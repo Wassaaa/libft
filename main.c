@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <bsd/string.h>
-#include "includes/libft.h"
+#include <ctype.h>
+#include "libft.h"
 
 //cc main.c -Wall -Wextra -Werror -g -I includes -L . -l ft -lbsd
 
@@ -572,16 +573,16 @@ int	test_striter(char *test_str, void (*f)(char *), char *expected, char *desc)
 }
 void	cap_alternate(unsigned int i, char *str)
 {
-	if (i % 2 == 1)
-		*str = ft_toupper((int)(unsigned char)*str);
+	if (i % 2 == 0)
+		*str = toupper((int)(unsigned char)*str);
 	else
-		*str = ft_tolower((int)(unsigned char)*str);
+		*str = tolower((int)(unsigned char)*str);
 }
 int	test_striteri(char *test_str, void (*f)(unsigned int, char *), char *expected, char *desc)
 {
 	char *str;
 
-	str = ft_strdup(test_str);
+	str = strdup(test_str);
 	if (!str)
 	{
 		printf("Failed to allocate memory for str in striteri");
@@ -1240,7 +1241,7 @@ int main() {
 	success = 1;
 	// Test ft_striteri
 	printf("\n-----ft_striteri------\n");
-	success *= test_striteri("hello world", cap_alternate, "HeLlO WoRlD", "cap all even characters in 'hellow world'");
+	success *= test_striteri("hello world", cap_alternate, "HeLlO WoRlD", "cap all even characters in 'hello world'");
 	if (!success)
 	{
 		printf("Test failed for ft_striteri\n");

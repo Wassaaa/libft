@@ -50,11 +50,7 @@ SRCS =	ft_bzero.c \
 		ft_putendl.c \
 		ft_putnbr.c \
 
-SRC_DIR = srcs
-
-INCLUDE_DIR = includes
-
-OBJECTS = $(addprefix $(SRC_DIR)/, $(SRCS:.c=.o))
+OBJECTS = $(SRCS:.c=.o)
 
 CFLAGS += -Wall -Wextra -Werror
 
@@ -65,7 +61,7 @@ $(NAME): $(OBJECTS)
 		ranlib $@
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-		cc -I $(INCLUDE_DIR) -c $< -o $@
+		cc -I . -c $< -o $@
 
 clean:
 		rm -f $(OBJECTS)
