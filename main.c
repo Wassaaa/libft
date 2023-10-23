@@ -799,9 +799,11 @@ int test_itoa(int nbr, char *expected, char *desc)
 		return (0);
 	return (1);
 }
-
+#include <strings.h>
 int main() {
 	int success = 1;
+	char fails[2048];
+	bzero(fails, 2048);
 
 	// Test ft_bzero vs. bzero
 	printf("\n-----ft_bzero vs. bzero------\n");
@@ -810,15 +812,23 @@ int main() {
 	success *= test_bzero("TESTINGIT", 3, 10, "TESTINGIT but only first 3 bytes");
 	success *= test_bzero("TESTINGIT", 0, 10, "TESTINGIT but 0 bytes");
 	if (!success)
-		printf("Test failed for ft_bzero\n");
+	{		
+	printf("Test failed for ft_bzero\n");
+	strcat(fails, "ft_bzero, ");
+	}
 
+	success = 1;
 	// Test ft_memchr vs. memchr
 	printf("\n-----ft_memchr vs. memchr------\n");
 	success *= test_memchr("Hello World", 'W', 11, 11, "standard test, finding 'W' in 'Hello World'");
 	success *= test_memchr("testerly", 'l', 5, 11, "looking for 'l' in 'testerly' but only first 5 bytes, so should be NULL");
 	if (!success)
+	{
 		printf("Test failed for ft_memchr\n");
+		strcat(fails, "ft_memchr, ");
+	}
 
+	success = 1;
 	// Test ft_memcmp vs. memcmp
 	printf("\n-----ft_memcmp vs. memcmp------\n");
 	success *= test_memcmp("Hello", "Hello", 5, "basic test, all correct, same string");
@@ -829,8 +839,12 @@ int main() {
 	success *= test_memcmp("Helko", "", 5, "2nd string empty");
 	success *= test_memcmp("", "", 0, "both empty");
 	if (!success)
+	{
 		printf("Test failed for ft_memcmp\n");
-
+		strcat(fails, "ft_memcmp, ");
+	}
+		
+	success = 1;
 	// Test ft_memcpy vs. memcpy
 	printf("\n-----ft_memcpy vs. memcpy------\n");
 	char overlap[] = "to this copy this";
@@ -839,73 +853,113 @@ int main() {
 	success *= test_memcpy("", "", 0, "");
 	success *= test_memcpy(overlap, overlap + 8, 8, "overlap test");
 	if (!success)
+	{
 		printf("Test failed for ft_memcpy\n");
+		strcat(fails, "ft_memcpy, ");
+	}
 
+	success = 1;
 	// Test ft_memccpy vs. memccpy
 	printf("\n-----ft_memccpy vs. memccpy------\n");
 	success *= test_memccpy("hello world", "world hello", ' ', 12, "");
 	success *= test_memccpy("hello world", "world hello", 'q', 12, "");
 	if (!success)
+	{
 		printf("Test failed for ft_memccpy\n");
+		strcat(fails, "ft_memccpy, ");
+	}
 
+	success = 1;
 	// Test ft_memmove vs. memmove
 	printf("\n-----ft_memmove vs. memmove------\n");
 	success *= test_memmove("Hello World!", 5, 0, 7, "Overlap backward memmove");
 	success *= test_memmove("Hello World!", 0, 5, 7, "Overlap forward memmove");
 	success *= test_memmove("Hello World!", 0, 0, 12, "No overlap memmove");
 	if (!success)
+	{
 		printf("Test failed for ft_memmove\n");
+		strcat(fails, "ft_memmove, ");
+	}
 
+	success = 1;
 	// Test ft_memset vs. memset
 	printf("\n-----ft_memset vs. memset------\n");
 	success *= test_memset("Hello World!", 'X', 5, "Set first 5 chars to 'X'");
 	success *= test_memset("Hello World!", 'X', 11, "");
 	if (!success)
+	{
 		printf("Test failed for ft_memset\n");
+		strcat(fails, "ft_memset, ");
+	}
 
+	success = 1;
 	// Test ft_strdup vs. strdup
 	printf("\n-----ft_strdup vs. strdup------\n");
 	success *= test_strdup("Hello World!", "Basic strdup");
 	success *= test_strdup("", "Empty string strdup");
 	if (!success)
+	{
 		printf("Test failed for ft_strdup\n");
+		strcat(fails, "ft_strdup, ");
+	}
 
+	success = 1;
 	// Test ft_strlen vs. strlen
 	printf("\n-----ft_strlen vs. strlen------\n");
 	success *= test_strlen("Hello World!", "Basic strlen");
 	success *= test_strlen("", "Empty string strlen");
 	if (!success)
-		printf("Test failed for ft_strdup\n");
+	{
+		printf("Test failed for ft_strlen\n");
+		strcat(fails, "ft_strlen, ");
+	}
 
+	success = 1;
 	// Test ft_strcpy vs. strcpy
 	printf("\n-----ft_strcpy vs. strcpy------\n");
 	success *= test_strcpy("Destination", "Hello World!", "Basic strcpy");
 	success *= test_strcpy("Destination", "", "Copy empty string");
 	if (!success)
+	{
 		printf("Test failed for ft_strcpy\n");
+		strcat(fails, "ft_strcpy, ");
+	}
 
+	success = 1;
 	// Test ft_strncpy vs. strncpy
 	printf("\n-----ft_strcpy vs. strcpy------\n");
 	success *= test_strncpy("Destination", "Hello World!", 5, "Copy first 5 chars");
 	success *= test_strncpy("Destination", "Hello", 10, "Copy with size > strlen(src)");
 	if (!success)
+	{
 		printf("Test failed for ft_strncpy\n");
+		strcat(fails, "ft_strncpy, ");
+	}
 
+	success = 1;
 	// Test ft_strcat vs. strcat
 	printf("\n-----Test ft_strcat vs. strcat------\n");
 	success *= test_strcat("Hello ", "World!", "Basic strcat");
 	success *= test_strcat("Hello", "", "Concatenate empty string");
 	if (!success)
+	{
 		printf("Test failed for ft_strcat\n");
+		strcat(fails, "ft_strcat, ");
+	}
 
 
+	success = 1;
 	// Test ft_strncat vs. strncat
 	printf("\n-----ft_strncat vs. strncat------\n");
 	success *= test_strncat("Hello ", "World!", 3, "Concatenate first 3 chars");
 	success *= test_strncat("Hello", "", 5, "Concatenate empty string with size");
 	if (!success)
+	{
 		printf("Test failed for ft_strncat\n");
+		strcat(fails, "ft_strncat, ");
+	}
 
+	success = 1;
 	// Test ft_strlcat vs. strlcat
 	printf("\n-----ft_strlcat vs. strlcat------\n");
 	success *= test_strlcat("Hello", " World", 256, "Normal case");
@@ -915,10 +969,13 @@ int main() {
 	success *= test_strlcat("Hello", "", 256, "Empty src");
 	success *= test_strlcat("", "", 256, "Both dest and src empty");
 	success *= test_strlcat("Hello", " World", 1, "Size 1");
-
 	if (!success)
-		printf("Test failed for ft_strlcat vs. strlcat\n");
+	{
+		printf("Test failed for ft_strlcat\n");
+		strcat(fails, "ft_strlcat, ");
+	}
 	
+	success = 1;
 	// Test ft_strchr vs. strchr
 	printf("\n-----ft_strchr vs. strchr------\n");
 	success *= test_strchr("find this thing", 't', "Normal case");
@@ -931,8 +988,12 @@ int main() {
 	success *= test_strchr("abcdefgh", 'e', "Find a character near the middle");
 	success *= test_strchr("abracadabra", 'a', "Find a character occurring multiple times");
 	if (!success)
-		printf("Test failed for ft_strchr vs. strchr\n");
+	{
+		printf("Test failed for ft_strchr\n");
+		strcat(fails, "ft_strchr, ");
+	}
 
+	success = 1;
 	// Test ft_strrchr vs. strrchr
 	printf("\n-----ft_strrchr vs. strrchr------\n");
 	success *= test_strrchr("find this thing", 't', "Normal case");
@@ -945,9 +1006,12 @@ int main() {
 	success *= test_strrchr("abcdefgh", 'e', "Find a character near the middle");
 	success *= test_strrchr("abracadabra", 'a', "Find a character occurring multiple times");
 	if (!success)
-		printf("Test failed for ft_strrchr vs. strrchr\n");
+	{
+		printf("Test failed for ft_strrchr\n");
+		strcat(fails, "ft_strrchr, ");
+	}
 
-
+	success = 1;
 	// Test ft_strcmp vs. strcmp
 	printf("\n-----ft_strcmp vs. strcmp------\n");
 	success *= test_strcmp("mayhem", "mayhem", "Identical Strings");
@@ -958,8 +1022,12 @@ int main() {
 	success *= test_strcmp("", "", "empty strings");
 	success *= test_strcmp("hello", "", "one empty");
 	if (!success)
-		printf("Test failed for ft_strcmp vs. strcmp\n");
+	{
+		printf("Test failed for ft_strcmp\n");
+		strcat(fails, "ft_strcmp, ");
+	}
 
+	success = 1;
 	// Test ft_strncmp vs. strncmp
 	printf("\n-----ft_strncmp vs. strncmp------\n");
 	success *= test_strncmp("abcde", "abcd", 4, "Identical up to 4 chars");
@@ -977,8 +1045,12 @@ int main() {
 	success *= test_strncmp("abc", "", 3, "one empty");
 	success *= test_strncmp("A", "ý", 1, "extended ascii");
 	if (!success)
-		printf("Test failed for ft_strncmp vs. strncmp\n");
+	{
+		printf("Test failed for ft_strncmp\n");
+		strcat(fails, "ft_strncmp, ");
+	}
 
+	success = 1;
 	// Test ft_strstr vs. strstr
 	printf("\n-----ft_strstr vs. strstr------\n");
 	success *= test_strstr("", " World", "Searching from nothing");
@@ -990,8 +1062,12 @@ int main() {
 	success *= test_strstr("42 students, 42 challenges, 42 hours", "challenges", "Counting the challenges at 42");
 	success *= test_strstr("At school 42, you learn to code and code to learn", "learn", "Finding the purpose at 42");
 	if (!success)
-		printf("Test failed for ft_strstr vs. strstr\n");
+	{
+		printf("Test failed for ft_strstr\n");
+		strcat(fails, "ft_strstr, ");
+	}
 
+	success = 1;
 	// Test ft_strnstr vs. strnstr
 	printf("\n-----ft_strnstr vs. strnstr------\n");
 	success *= test_strnstr("Hello, world!", "world", 13, "Found substring in the middle");
@@ -1005,8 +1081,12 @@ int main() {
 	success *= test_strnstr("Hello, world!", "wor", 9, "len too short for the full needle");
 	success *= test_strnstr("Hello, world!", "wor", 10, "len JUST enough");
 	if (!success)
-		printf("Test failed for ft_strnstr vs. strnstr\n");
+	{
+		printf("Test failed for ft_strnstr\n");
+		strcat(fails, "ft_strnstr, ");
+	}
 
+	success = 1;
 	// Test ft_atoi vs atoi
 	printf("\n-----ft_atoi vs. atoi------\n");
 	success *= test_atoi("123");
@@ -1023,10 +1103,14 @@ int main() {
 	success *= test_atoi("-2147483648");
 	success *= test_atoi("2147483647");
 	if (!success)
-		printf("Test failed for ft_atoi vs. atoi\n");
+	{
+		printf("Test failed for ft_atoi\n");
+		strcat(fails, "ft_atoi, ");
+	}
 
 	printf("----- Testing Character Functions isdigit, isalpha etc-----\n");
 
+	success = 1;
 	// Test cases for ft_isdigit
 	success *= ft_isdigit('5') == 1;
 	success *= ft_isdigit('a') == 0;
@@ -1084,68 +1168,106 @@ int main() {
 		printf("All tests passed for character functions\n");
 	} else {
 		printf("Some tests failed for character functions\n");
+		strcat(fails, "character functions, ");
 	}
 
 	//PART 2 Additional Functions
 
+	success = 1;
 	// Test ft_memalloc
 	printf("\n-----ft_memalloc------\n");
 	success *= test_memalloc(10, "size 10");
 	success *= test_memalloc(0, "size 0");
 	success *= test_memalloc(1, "size 1");
 	if (!success)
+	{
 		printf("Test failed for ft_memalloc\n");
+		strcat(fails, "ft_memalloc, ");
+	}
 
+	success = 1;
 	// Test ft_memdel
 	printf("\n-----ft_memdel------\n");
 	success *= test_memdel("15 byte allocation");
 	if (!success)
+	{
 		printf("Test failed for ft_memdel\n");
+		strcat(fails, "ft_memdel, ");
+	}
 
+	success = 1;
 	// Test ft_strnew
 	printf("\n-----ft_strnew------\n");
 	success *= test_strnew(15, "15 character string");
 	if (!success)
+	{
 		printf("Test failed for ft_strnew\n");
+		strcat(fails, "ft_strnew, ");
+	}
 
+	success = 1;
 	// Test ft_strdel
 	printf("\n-----ft_strdel------\n");
 	success *= test_strdel("15 byte allocation");
 	if (!success)
+	{
 		printf("Test failed for ft_strdel\n");
+		strcat(fails, "ft_strdel, ");
+	}
 
+	success = 1;
 	// Test ft_strclr
 	printf("\n-----ft_strclr------\n");
 	success *= test_strclr("Hello World");
 	success *= test_strclr("");
 	success *= test_strclr("42 42 42");
 	if (!success)
+	{
 		printf("Test failed for ft_strclr\n");
+		strcat(fails, "ft_strclr, ");
+	}
 
+	success = 1;
 	// Test ft_striter
 	printf("\n-----ft_striter------\n");
 	success *= test_striter("Hello World", increment_char, "Ifmmp!Xpsme", "incrementing each character of Hello World by 1");
 	if (!success)
+	{
 		printf("Test failed for ft_striter\n");
+		strcat(fails, "ft_striter, ");
+	}
 
+	success = 1;
 	// Test ft_striteri
 	printf("\n-----ft_striteri------\n");
 	success *= test_striteri("hello world", cap_alternate, "HeLlO WoRlD", "cap all even characters in 'hellow world'");
 	if (!success)
+	{
 		printf("Test failed for ft_striteri\n");
+		strcat(fails, "ft_striteri, ");
+	}
 
+	success = 1;
 	// Test ft_strmap
 	printf("\n-----ft_strmap------\n");
 	success *= test_strmap("hello world", char_upper, "HELLO WORLD", "capitalize all letters");
 	if (!success)
+	{
 		printf("Test failed for ft_strmap\n");
+		strcat(fails, "ft_strmap, ");
+	}
 
+	success = 1;
 	// Test ft_strmapi
 	printf("\n-----ft_strmapi------\n");
 	success *= test_strmapi("hello world", cap_even, "hElLo wOrLd", "capitalize all letters");
 	if (!success)
+	{
 		printf("Test failed for ft_strmapi\n");
+		strcat(fails, "ft_strmapi, ");
+	}
 
+	success = 1;
 	// Test ft_strequ
 	printf("\n-----ft_strequ------\n");
 	success *= test_strequ("mayhem", "mayhem", 1, "Identical Strings");
@@ -1156,8 +1278,12 @@ int main() {
 	success *= test_strequ("", "", 1, "empty strings");
 	success *= test_strequ("hello", "", 0, "one empty");
 	if (!success)
+	{
 		printf("Test failed for ft_strequ\n");
+		strcat(fails, "ft_strequ, ");
+	}
 
+	success = 1;
 	// Test ft_strnequ
 	printf("\n-----ft_strnequ------\n");
 	success *= test_strnequ("abcde", "abcd", 4, 1, "Identical up to 4 chars");
@@ -1175,8 +1301,12 @@ int main() {
 	success *= test_strnequ("abc", "", 3, 0, "one empty");
 	success *= test_strnequ("A", "ý", 1, 0, "extended ascii");
 	if (!success)
+	{
 		printf("Test failed for ft_strnequ\n");
+		strcat(fails, "ft_strnequ, ");
+	}
 
+	success = 1;
 	// Test ft_strsub
 	printf("\n-----ft_strsub------\n");
 	success *= test_strsub("hello world", 6, 5, "world", "Extract 'world' from 'hello world'");
@@ -1187,8 +1317,12 @@ int main() {
 	success *= test_strsub("", 0, 5, "", "Extract from an empty string");
 	success *= test_strsub("hello", 0, 10, "hello", "Extract beyond the string's length");
 	if (!success)
+	{
 		printf("Test failed for ft_strsub\n");
+		strcat(fails, "ft_strsub, ");
+	}
 
+	success = 1;
 	// Test ft_strjoin
 	printf("\n-----ft_strjoin------\n");
 	success *= test_strjoin("Hello ", "World", "Hello World", "simple basic test");
@@ -1197,8 +1331,12 @@ int main() {
 	success *= test_strjoin("", "", "", "Both strings empty");
 	success *= test_strjoin("A really long string to test buffer overflows ", "and potential memory issues.", "A really long string to test buffer overflows and potential memory issues.", "Long string test");
 	if (!success)
+	{
 		printf("Test failed for ft_strjoin\n");
+		strcat(fails, "ft_strjoin, ");
+	}
 
+	success = 1;
 	// Test ft_strtrim
 	printf("\n-----ft_strtrim------\n");
 	success *= test_strtrim("   Hello World   ", "Hello World", "Trimming spaces");
@@ -1209,8 +1347,12 @@ int main() {
 	success *= test_strtrim("HelloWorld", "HelloWorld", "No spaces to trim");
 	success *= test_strtrim(" \t\nHello World \t\n", "Hello World", "Mixed whitespace characters");
 	if (!success)
+	{
 		printf("Test failed for ft_strtrim\n");
+		strcat(fails, "ft_strtrim, ");
+	}
 
+	success = 1;
 	// Test ft_strsplit
 	printf("\n-----ft_strsplit------\n");
 	char *expected1[] = {"test", "this", "thing", "now", NULL};
@@ -1226,8 +1368,12 @@ int main() {
 	char *expected6[] = {NULL};
 	success *= test_strsplit("", ' ', expected6, "Empty string test");
 	if (!success)
+	{
 		printf("Test failed for ft_strsplit\n");
+		strcat(fails, "ft_strsplit, ");
+	}
 
+	success = 1;
 	// Test ft_itoa
 	printf("\n-----ft_itoa------\n");
 	success *= test_itoa(-2147483648, "-2147483648", "int min");
@@ -1237,7 +1383,10 @@ int main() {
 	success *= test_itoa(0, "0", "zero");
 	//success *= test_itoa(-2147483649, "-2147483649", "invalid int");
 	if (!success)
+	{
 		printf("Test failed for ft_itoa\n");
+		strcat(fails, "ft_itoa, ");
+	}
 
 	printf("\n-----some of those easy void functions tests------\n");
 	ft_putchar('4');
@@ -1252,10 +1401,10 @@ int main() {
 	ft_putchar('\n');
 
 	printf("\n-----Final Result------\n");
-	if (success) {
+	if (fails[0]=='\0') {
 		printf("All tests were successful\n");
 	} else {
-		printf("Some tests failed\n");
+		printf("tests failed on following functions: %s\n", fails);
 	}
 
 	return 0;
