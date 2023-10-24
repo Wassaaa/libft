@@ -57,10 +57,9 @@ CFLAGS += -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-		ar rc $@ $^
-		ranlib $@
+		ar -rcs $@ $^
 
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+$./%.o: $./%.c
 		cc -I . -c $< -o $@
 
 clean:
