@@ -44,7 +44,7 @@ static char	*next_word(char const **str, char c)
 	return (word);
 }
 
-char	**ft_strsplit(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**str_arr;
 	size_t	words;

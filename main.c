@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include <bsd/string.h>
+//#include <bsd/string.h>
+#include <string.h>
 #include <ctype.h>
 #include "libft.h"
 
-//cc main.c -Wall -Wextra -Werror -g -I includes -L . -l ft -lbsd
+//cc main.c -Wall -Wextra -Werror -g -I . -L . -l ft -lbsd
 
 #define SIZE_ARRAY 6
 
@@ -117,7 +118,7 @@ int	test_strstr(char *dest, char *src,  char *desc)
 	return (1);
 }
 
-int test_strlcat(char *dest, char *src, unsigned int size, char *desc) 
+int test_strlcat(char *dest, char *src, unsigned int size, char *desc)
 {
 	char	ft_dest[256];
 	char	std_dest[256];
@@ -140,7 +141,7 @@ int test_strlcat(char *dest, char *src, unsigned int size, char *desc)
 	return (1);
 }
 
-int test_strchr(char *src, char c, char *desc) 
+int test_strchr(char *src, char c, char *desc)
 {
 	char	ft_src[256];
 	char	std_src[256];
@@ -164,7 +165,7 @@ int test_strchr(char *src, char c, char *desc)
 	return (1);
 }
 
-int test_strrchr(char *src, char c, char *desc) 
+int test_strrchr(char *src, char c, char *desc)
 {
 	char	ft_src[256];
 	char	std_src[256];
@@ -224,7 +225,7 @@ int	test_memchr(char *str, char c, int size, int print, char *desc)
 int normalize_result(int result) {
 	if (result < 0)
 		return -1;
-	if (result > 0) 
+	if (result > 0)
 		return 1;
 	return 0;
 }
@@ -244,7 +245,7 @@ int	test_memcmp(char *str1, char *str2, int size, char *desc)
 	return (1);
 }
 
-int test_memcpy(char *dest, char *src, size_t size, char *desc) 
+int test_memcpy(char *dest, char *src, size_t size, char *desc)
 {
 	char	ft_dest[256];
 	char	std_dest[256];
@@ -262,7 +263,7 @@ int test_memcpy(char *dest, char *src, size_t size, char *desc)
 	return (1);
 }
 
-int test_memccpy(char *dest, char *src, char c, size_t size, char *desc) 
+int test_memccpy(char *dest, char *src, char c, size_t size, char *desc)
 {
 	char	ft_dest[256];
 	char	std_dest[256];
@@ -476,6 +477,7 @@ int	test_strnew(size_t size, char *desc)
 	char	*str;
 	size_t	i;
 
+	i = 0;
 	str = ft_strnew(size);
 	printf("testing: %s\n", desc);
 	printArray(str, size + 1);
@@ -686,12 +688,12 @@ int	test_strnequ(char *s1, char *s2, size_t n, int expected, char *desc)
 	return (0);
 }
 
-int	test_strsub(char *str, unsigned int start, size_t len, char *expected, char *desc)
+int	test_substr(char *str, unsigned int start, size_t len, char *expected, char *desc)
 {
 	char *substring;
 	printf("%s\n", desc);
 	printf("substring starting from index '%d' for %ld bytes in '%s'\n", start, len, str);
-	substring = ft_strsub(str, start, len);
+	substring = ft_substr(str, start, len);
 	printf("my substring:	'%s'\nexpected:	'%s'\n", substring, expected);
 	if (strcmp(substring, expected) == 0)
 	{
@@ -705,7 +707,7 @@ int	test_strsub(char *str, unsigned int start, size_t len, char *expected, char 
 int	test_strjoin(char *s1, char *s2, char *expected, char *desc)
 {
 	char *my_str;
-	
+
 	printf("%s\n", desc);
 	printf("concatenating '%s' and '%s'\n", s1, s2);
 	my_str = ft_strjoin(s1, s2);
@@ -743,7 +745,7 @@ int test_strsplit(char *str, char c, char **expected, char *desc)
 
 	printf("%s\n", desc);
 	printf("splitting '%s' with delimiter '%c'\n", str, c);
-	my_str_arr = ft_strsplit(str, c);
+	my_str_arr = ft_split(str, c);
 	if (!my_str_arr)
 	{
 		printf("null array");
@@ -813,7 +815,7 @@ int main() {
 	success *= test_bzero("TESTINGIT", 3, 10, "TESTINGIT but only first 3 bytes");
 	success *= test_bzero("TESTINGIT", 0, 10, "TESTINGIT but 0 bytes");
 	if (!success)
-	{		
+	{
 	printf("Test failed for ft_bzero\n");
 	strcat(fails, "ft_bzero, ");
 	}
@@ -844,7 +846,7 @@ int main() {
 		printf("Test failed for ft_memcmp\n");
 		strcat(fails, "ft_memcmp, ");
 	}
-		
+
 	success = 1;
 	// Test ft_memcpy vs. memcpy
 	printf("\n-----ft_memcpy vs. memcpy------\n");
@@ -975,7 +977,7 @@ int main() {
 		printf("Test failed for ft_strlcat\n");
 		strcat(fails, "ft_strlcat, ");
 	}
-	
+
 	success = 1;
 	// Test ft_strchr vs. strchr
 	printf("\n-----ft_strchr vs. strchr------\n");
@@ -1308,19 +1310,19 @@ int main() {
 	}
 
 	success = 1;
-	// Test ft_strsub
-	printf("\n-----ft_strsub------\n");
-	success *= test_strsub("hello world", 6, 5, "world", "Extract 'world' from 'hello world'");
-	success *= test_strsub("hello world", 0, 5, "hello", "Extract from the start of the string");
-	success *= test_strsub("hello world", 6, 5, "world", "Extract from the end of the string");
-	success *= test_strsub("hello world", 0, 11, "hello world", "Extract the entire string");
-	success *= test_strsub("hello world", 6, 0, "", "Extract with length 0");
-	success *= test_strsub("", 0, 5, "", "Extract from an empty string");
-	success *= test_strsub("hello", 0, 10, "hello", "Extract beyond the string's length");
+	// Test ft_substr
+	printf("\n-----ft_substr------\n");
+	success *= test_substr("hello world", 6, 5, "world", "Extract 'world' from 'hello world'");
+	success *= test_substr("hello world", 0, 5, "hello", "Extract from the start of the string");
+	success *= test_substr("hello world", 6, 5, "world", "Extract from the end of the string");
+	success *= test_substr("hello world", 0, 11, "hello world", "Extract the entire string");
+	success *= test_substr("hello world", 6, 0, "", "Extract with length 0");
+	success *= test_substr("", 0, 5, "", "Extract from an empty string");
+	success *= test_substr("hello", 0, 10, "hello", "Extract beyond the string's length");
 	if (!success)
 	{
-		printf("Test failed for ft_strsub\n");
-		strcat(fails, "ft_strsub, ");
+		printf("Test failed for ft_substr\n");
+		strcat(fails, "ft_substr, ");
 	}
 
 	success = 1;
@@ -1354,8 +1356,8 @@ int main() {
 	}
 
 	success = 1;
-	// Test ft_strsplit
-	printf("\n-----ft_strsplit------\n");
+	// Test ft_split
+	printf("\n-----ft_split------\n");
 	char *expected1[] = {"test", "this", "thing", "now", NULL};
 	success *= test_strsplit("test this thing now", ' ', expected1, "Basic test");
 	char *expected2[] = {"test", "this", "thing", "now", NULL};
@@ -1370,8 +1372,8 @@ int main() {
 	success *= test_strsplit("", ' ', expected6, "Empty string test");
 	if (!success)
 	{
-		printf("Test failed for ft_strsplit\n");
-		strcat(fails, "ft_strsplit, ");
+		printf("Test failed for ft_split\n");
+		strcat(fails, "ft_split, ");
 	}
 
 	success = 1;
@@ -1397,7 +1399,7 @@ int main() {
 	ft_putendl("Hello putendl");
 	ft_putendl("next is putnbr");
 	ft_putnbr(5523);
-	ft_putchar('\n');	
+	ft_putchar('\n');
 	ft_putnbr(-5523);
 	ft_putchar('\n');
 

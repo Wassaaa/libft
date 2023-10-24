@@ -1,11 +1,11 @@
 #include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*new_str;
 	size_t	i;
 
-	new_str = ft_memalloc(len + 1);
+	new_str = malloc(len + 1);
 	if (!new_str)
 		return (NULL);
 	i = 0;
@@ -15,5 +15,6 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		i++;
 		start++;
 	}
+	new_str[i] = '\0';
 	return (new_str);
 }

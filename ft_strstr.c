@@ -11,5 +11,5 @@ char	*ft_strstr(const char *haystack, const char *needle)
 			return ((char *)haystack);
 		haystack++;
 	}
-	return ('\0');
+	return (NULL);
 }
