@@ -5,8 +5,8 @@
 	"files.trimTrailingWhitespace": true,
 	"files.insertFinalNewline": true,
 	"editor.detectIndentation": true,
-  
 	"[c]": {
-	  "editor.defaultFormatter": "keyhr.42-c-format"
-	}
-  }
+		"editor.defaultFormatter": "keyhr.42-c-format"
+	},
+	"C_Cpp.default.compilerPath": "/usr/bin/clang"
+}
