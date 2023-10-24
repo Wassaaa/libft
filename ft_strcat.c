@@ -1,6 +1,6 @@
 #include "libft.h"
 
-char *ft_strcat(char *dest, const char *src)
+char	*ft_strcat(char *dest, const char *src)
 {
 	size_t	dest_len;
 	char	*dest_start;
@@ -11,5 +11,5 @@ char *ft_strcat(char *dest, const char *src)
 	while (*src)
 		*dest++ = *src++;
 	*dest = '\0';
-	return dest_start;
+	return (dest_start);
 }

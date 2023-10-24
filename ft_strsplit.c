@@ -62,7 +62,7 @@ char	**ft_strsplit(char const *s, char c)
 		{
 			while (--i)
 				free(str_arr[i]);
-			free (str_arr);
+			free(str_arr);
 			return (NULL);
 		}
 		i++;

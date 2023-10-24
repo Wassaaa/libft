@@ -1,6 +1,6 @@
 #include "libft.h"
 
-static size_t count_digits(int n)
+static size_t	count_digits(int n)
 {
 	size_t	digits;
 

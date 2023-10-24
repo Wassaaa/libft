@@ -2,7 +2,7 @@
 
 char	*ft_strcpy(char *dest, const char *src)
 {
-	char *dest_start;
+	char	*dest_start;
 
 	dest_start = dest;
 	while (*src)
