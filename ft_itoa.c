@@ -26,9 +26,10 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		is_negative = 1;
 	digits = count_digits(n) + is_negative;
-	nbr = ft_memalloc(digits + 1);
+	nbr = malloc(digits + 1);
 	if (!nbr)
 		return (NULL);
+	nbr[digits] = '\0';
 	i = digits - 1;
 	if (n == 0)
 		nbr[i] = '0';

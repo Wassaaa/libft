@@ -7,7 +7,7 @@ int	ft_atoi(const char *nptr)
 
 	number = 0;
 	sign = 1;
-	while (ft_isspace(*nptr))
+	while (*nptr == 32 || (*nptr >= 9 && *nptr <= 13))
 		nptr++;
 	if (*nptr == '-')
 	{

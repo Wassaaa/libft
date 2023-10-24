@@ -29,7 +29,7 @@ static char	*next_word(char const **str, char c)
 		(*str)++;
 	while ((*str)[i] && (*str)[i] != c)
 		i++;
-	word = (char *)ft_memalloc(sizeof(char) * (i + 1));
+	word = (char *)malloc(sizeof(char) * (i + 1));
 	if (!word)
 		return (NULL);
 	i = 0;
@@ -39,6 +39,7 @@ static char	*next_word(char const **str, char c)
 		(*str)++;
 		i++;
 	}
+	word[i] = '\0';
 	while (**str && **str == c)
 		(*str)++;
 	return (word);
@@ -51,7 +52,7 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 
 	words = count_words(s, c);
-	str_arr = (char **)ft_memalloc(sizeof(char *) * (words + 1));
+	str_arr = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!str_arr)
 		return (NULL);
 	i = 0;
@@ -67,5 +68,6 @@ char	**ft_split(char const *s, char c)
 		}
 		i++;
 	}
+	str_arr[i] = NULL;
 	return (str_arr);
 }
