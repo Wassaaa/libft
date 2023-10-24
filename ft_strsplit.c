@@ -3,7 +3,7 @@
 static size_t	count_words(char const *s, char c)
 {
 	size_t	count;
-	
+
 	count = 0;
 	while (*s)
 	{
@@ -67,5 +67,5 @@ char	**ft_strsplit(char const *s, char c)
 		}
 		i++;
 	}
-	return (str_arr);	
+	return (str_arr);
 }

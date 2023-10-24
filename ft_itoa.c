@@ -3,7 +3,7 @@
 static size_t count_digits(int n)
 {
 	size_t	digits;
-	
+
 	if (n == 0)
 		return (1);
 	digits = 0;
