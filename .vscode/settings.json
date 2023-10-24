@@ -2,10 +2,11 @@
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false,
 	"editor.renderWhitespace": "all",
+	"editor.formatOnSave": false,
 	"files.trimTrailingWhitespace": true,
 	"files.insertFinalNewline": true,
 	"editor.detectIndentation": true,
-  
+
 	"[c]": {
 	  "editor.defaultFormatter": "keyhr.42-c-format"
 	}
