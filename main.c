@@ -35,6 +35,32 @@ void	print_compare_array(char *ft, char *std, int n, char *desc)
 	}
 }
 
+int	test_calloc(size_t count, size_t size, char *desc)
+{
+	char *ft_val;
+	size_t i;
+
+	ft_val = (char *)ft_calloc(count, size);
+	printf("%s\n", desc);
+	printArray(ft_val, count * size);
+	i = 0;
+	while (count * size > i)
+	{
+		if (ft_val[i] != 0)
+		{
+			free(ft_val);
+			printf("wasn't initialized to 0s");
+			return (0);
+		}
+		//if this segfaults, then memory area is not writable
+		ft_val[i] = 'A';
+		ft_val[i] = 0;
+		i++;
+	}
+	free (ft_val);
+	return (1);
+}
+
 int test_atoi(const char *input) {
 	int result = ft_atoi(input);
 	int expected = atoi(input);
@@ -490,6 +516,19 @@ int main() {
 	int success = 1;
 	char fails[2048];
 	bzero(fails, 2048);
+
+	success = 1;
+	// Test ft_calloc
+	printf("\n-----ft_calloc------\n");
+	success *= test_calloc(10, sizeof(char), "10 times characters");
+	success *= test_calloc(5, sizeof(int), "5 integers");
+	success *= test_calloc(0, 50, "0 times 50byte objects");
+	success *= test_calloc(1, sizeof(char), "1 character");
+	if (!success)
+	{
+		printf("Test failed for ft_calloc\n");
+		strcat(fails, "ft_calloc, ");
+	}
 
 	// Test ft_bzero vs. bzero
 	printf("\n-----ft_bzero vs. bzero------\n");
