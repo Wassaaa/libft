@@ -1,7 +1,5 @@
 *.o
 *.dSYM/
 tmp/
-.*
-!.gitignore
 a.out
 *.swp
