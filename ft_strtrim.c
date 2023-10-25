@@ -6,11 +6,28 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:02:05 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 16:02:06 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/25 21:04:56 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static size_t	count_size(char const *s, char const *set)
+{
+	size_t	counter;
+
+	counter = 0;
+	while (*s && ft_strchr(set, *s))
+		s++;
+	while (*s)
+	{
+		counter++;
+		s++;
+	}
+	while (counter > 0 && *--s && ft_strchr(set, *s))
+		counter--;
+	return (counter);
+}
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
@@ -18,22 +35,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*start_str;
 	size_t	len;
 
-	len = 0;
-	len = ft_strlen(s1);
+	len = count_size(s1, set);
 	new_str = malloc(len + 1);
 	if (!new_str)
 		return (NULL);
 	start_str = new_str;
-	new_str[len] = '\0';
 	while (*s1 && ft_strchr(set, *s1))
 		s1++;
-	while (*s1)
+	while (len--)
 		*(new_str++) = *(s1++);
-	new_str--;
-	while (ft_strchr(set, *new_str))
-	{
-		*new_str = '\0';
-		new_str--;
-	}
+	*new_str = '\0';
 	return (start_str);
 }
