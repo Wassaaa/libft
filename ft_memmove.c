@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:17:12 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 17:46:11 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:28:05 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		temp += len;
 		src += len;
 		while (len--)
-			*--temp = *(char *)(--src);
+			*(--temp) = *(char *)(--src);
 	}
 	return (dst);
 }

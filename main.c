@@ -150,10 +150,18 @@ int	test_strlcat(char *dest, char *src, size_t size, char *desc)
 	size_t	ft_ret;
 	size_t	std_ret;
 
-	strncpy(ft_dest, dest, sizeof(ft_dest));
-	strncpy(std_dest, dest, sizeof(std_dest));
-	ft_ret = ft_strlcat(ft_dest, src, size);
-	std_ret = strlcat(std_dest, src, size);
+	if (!dest)
+	{
+		ft_ret = ft_strlcat(NULL, src, size);
+		std_ret = strlcat(NULL, src, size);
+	}
+	else
+	{
+		strncpy(ft_dest, dest, sizeof(ft_dest));
+		strncpy(std_dest, dest, sizeof(std_dest));
+		ft_ret = ft_strlcat(ft_dest, src, size);
+		std_ret = strlcat(std_dest, src, size);
+	}
 	printf("Test: %s\n", desc);
 	printf("\tft_strlcat returns:%zu, Result: %s\n", ft_ret, ft_dest);
 	printf("\tstrlcat returns:%zu, Result: %s\n\n", std_ret, std_dest);
@@ -282,10 +290,23 @@ int	test_memcpy(char *dest, char *src, size_t size, char *desc)
 	char	*ft_ret;
 	char	*std_ret;
 
-	strncpy(ft_dest, dest, sizeof(ft_dest));
-	strncpy(std_dest, dest, sizeof(std_dest));
-	ft_ret = ft_memcpy(ft_dest, src, size);
-	std_ret = memcpy(std_dest, src, size);
+	if (!dest)
+	{
+		ft_ret = ft_memcpy(NULL, src, size);
+		std_ret = memcpy(NULL, src, size);
+	}
+	else
+	{
+		strncpy(ft_dest, dest, sizeof(ft_dest));
+		strncpy(std_dest, dest, sizeof(std_dest));
+		ft_ret = ft_memcpy(ft_dest, src, size);
+		std_ret = memcpy(std_dest, src, size);
+	}
+	if (!ft_ret && !std_ret && size != 0)
+	{
+		printf("corner case NULL NULL size not 0\n");
+		return (1);
+	}
 	printf("copying '%s' into '%s' for the first %ld bytes\n", src, dest, size);
 	print_compare_array(ft_ret, std_ret, size + 1, desc);
 	if (memcmp(ft_ret, std_ret, size) != 0)
@@ -293,8 +314,7 @@ int	test_memcpy(char *dest, char *src, size_t size, char *desc)
 	return (1);
 }
 
-int	test_memmove(char *src, int dest_offset, int src_offset, size_t size,
-		char *desc)
+int	test_memmove(char *src, int dest_offset, int src_offset, size_t size, char *desc)
 {
 	char	ft_src[256];
 	char	std_src[256];
@@ -303,8 +323,7 @@ int	test_memmove(char *src, int dest_offset, int src_offset, size_t size,
 
 	strncpy(ft_src, src, sizeof(ft_src));
 	strncpy(std_src, src, sizeof(std_src));
-	printf("copying '%s' into '%s' for the first %ld bytes\n", ft_src
-		+ src_offset, ft_src + dest_offset, size);
+	printf("copying '%s' into '%s' for the first %ld bytes\n", ft_src + src_offset, ft_src + dest_offset, size);
 	ft_ret = ft_memmove(ft_src + dest_offset, ft_src + src_offset, size);
 	std_ret = memmove(std_src + dest_offset, std_src + src_offset, size);
 	print_compare_array(ft_ret, std_ret, strlen(src), desc);
@@ -646,6 +665,11 @@ int	main(void)
 	success *= test_memcpy("testing this copy thing", "12345", 5, "");
 	success *= test_memcpy("hello world", "world hello", 11, "");
 	success *= test_memcpy("", "", 0, "");
+	success *= test_memcpy(NULL, NULL, 5, "corner case NULL NULL and !size");
+	//segfaults
+	//success *= test_memcpy(NULL, NULL, 0, "corner case NULL NULL and size 0");
+	//success *= test_memcpy(NULL, "test", 5, "corner case dest NULL");
+	//success *= test_memcpy("test", NULL, 5, "corner case src NULL");
 	success *= test_memcpy(overlap, overlap + 8, 8, "overlap test");
 	if (!success)
 	{
@@ -719,6 +743,7 @@ int	main(void)
 	success *= test_strlcat("Hello", "", 256, "Empty src");
 	success *= test_strlcat("", "", 256, "Both dest and src empty");
 	success *= test_strlcat("Hello", " World", 1, "Size 1");
+	success *= test_strlcat(NULL, "whatever", 0, "Null dest with size 0");
 	if (!success)
 	{
 		printf("Test failed for ft_strlcat\n");

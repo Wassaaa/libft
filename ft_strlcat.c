@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:21:22 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:23:35 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/25 18:54:20 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	offset;
 	size_t	s_index;
 
-	d_len = ft_strlen(dst);
+	if (!dst && dstsize == 0)
+		d_len = 0;
+	else
+		d_len = ft_strlen(dst);
 	s_len = ft_strlen(src);
 	offset = d_len;
 	s_index = 0;
