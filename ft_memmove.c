@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:17:12 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:17:33 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/25 17:46:11 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const char	*c_src;
 	char		*temp;
 
-	c_src = (char *)src;
+	if ((!dst && !src) && len != 0)
+		return (NULL);
 	temp = dst;
 	if (dst <= src)
 		while (len--)
-			*temp++ = *c_src++;
+			*temp++ = *(char *)src++;
 	else
 	{
 		temp += len;
-		c_src += len;
+		src += len;
 		while (len--)
-			*--temp = *--c_src;
+			*--temp = *(char *)(--src);
 	}
 	return (dst);
 }

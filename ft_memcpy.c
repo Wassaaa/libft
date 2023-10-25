@@ -6,20 +6,24 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:15:49 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:20:13 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/25 17:44:38 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char	*char_src;
-	char	*char_dest;
+	void *dst_start;
 
-	char_src = (char *)src;
-	char_dest = (char *)dst;
+	if ((!dst && !src) && n != 0)
+		return (NULL);
+	dst_start = dst;
 	while (n--)
-		*char_dest++ = *char_src++;
-	return (dst);
+	{
+		*(char *)dst = *(char *)src;
+		dst++;
+		src++;
+	}
+	return (dst_start);
 }
