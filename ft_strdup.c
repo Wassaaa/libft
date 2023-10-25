@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:53:08 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:53:09 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/25 19:48:27 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strdup(const char *s1)
 
 	i = 0;
 	dup = (char *)malloc(ft_strlen(s1) + 1);
+	if (!dup)
+		return (NULL);
 	while (s1[i])
 	{
 		dup[i] = s1[i];
