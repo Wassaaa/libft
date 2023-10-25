@@ -920,15 +920,11 @@ int	main(void)
 	success = 1;
 	// Test ft_strjoin
 	printf("\n-----ft_strjoin------\n");
-	success *= test_strjoin("Hello ", "World", "Hello World",
-			"simple basic test");
+	success *= test_strjoin("Hello ", "World", "Hello World", "simple basic test");
 	success *= test_strjoin("", "World", "World", "Empty prefix");
 	success *= test_strjoin("Hello ", "", "Hello ", "Empty suffix");
 	success *= test_strjoin("", "", "", "Both strings empty");
-	success *= test_strjoin("A really long string to test buffer overflows ",
-			"and potential memory issues.",
-			"A really long string to test buffer overflows and potential memory issues.",
-			"Long string test");
+	success *= test_strjoin("A really long string to test buffer overflows ", "and potential memory issues.", "A really long string to test buffer overflows and potential memory issues.", "Long string test");
 	if (!success)
 	{
 		printf("Test failed for ft_strjoin\n");
