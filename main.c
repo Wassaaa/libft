@@ -977,6 +977,22 @@ int	main(void)
 		printf("Test failed for ft_itoa\n");
 		strcat(fails, "ft_itoa, ");
 	}
+
+	printf("\n-----Simple checks for the FD write ones------\n");
+	//some simple checks for the FD ones
+	//putchar
+	ft_putchar_fd('4', 1);
+	ft_putchar_fd('2', 1);
+	ft_putchar_fd('\n', 1);
+	ft_putstr_fd("Hello World\n\n", 1);
+	ft_putendl_fd("Hello putendl", 1);
+	ft_putendl_fd("next is putnbr", 1);
+	ft_putnbr_fd(5523, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(-5523, 1);
+	ft_putchar_fd('\n', 1);
+
+
 	printf("\n-----Final Result------\n");
 	if (fails[0] == '\0')
 	{
