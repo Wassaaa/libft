@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:15:49 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 17:44:38 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 17:03:21 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	void *dst_start;
+	void	*dst_start;
 
 	if ((!dst && !src) && n != 0)
 		return (NULL);

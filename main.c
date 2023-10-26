@@ -1012,9 +1012,15 @@ int	main(void)
 	ft_putstr_fd("Hello World\n\n", 1);
 	ft_putendl_fd("Hello putendl", 1);
 	ft_putendl_fd("next is putnbr", 1);
+	ft_putnbr_fd(0, 1);
+	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(5523, 1);
 	ft_putchar_fd('\n', 1);
 	ft_putnbr_fd(-5523, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(-2147483648, 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(2147483647, 1);
 	ft_putchar_fd('\n', 1);
 
 

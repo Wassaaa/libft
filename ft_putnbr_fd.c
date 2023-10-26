@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:39:46 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 16:40:25 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 16:54:49 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,16 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	ft_putstr_fd(ft_itoa(n), fd);
+	static int	iteration = 1;
+
+	if (n < 0)
+		ft_putchar_fd('-', fd);
+	if (n != 0)
+	{
+		iteration = 0;
+		ft_putnbr_fd(ABS(n / 10), fd);
+		ft_putchar_fd(ABS(n % 10) + '0', fd);
+	}
+	else if (iteration)
+		ft_putchar_fd('0', fd);
 }
