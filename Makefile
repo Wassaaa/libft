@@ -36,7 +36,8 @@ SRCS =	ft_isalpha.c \
 		ft_putnbr_fd.c \
 		\
 		ft_lstnew.c\
-		ft_lstadd_front.c
+		ft_lstadd_front.c\
+		ft_lstsize.c\
 
 OBJECTS = $(SRCS:.c=.o)
 
