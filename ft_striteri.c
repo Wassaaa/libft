@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:14:21 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 16:14:22 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 18:31:37 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	unsigned int	i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		f(i, &s[i]);
 		i++;
