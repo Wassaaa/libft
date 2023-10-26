@@ -6,15 +6,15 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:26:44 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/26 18:26:46 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 18:27:04 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content)
 {
-	t_list *new_list;
+	t_list	*new_list;
 
 	new_list = malloc(sizeof(*new_list));
 	if (!new_list)

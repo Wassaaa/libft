@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:13:31 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/26 17:45:19 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 18:28:28 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*new_str;
 	size_t	i;
+
 	if (!s)
 		return (NULL);
 	new_str = (char *)malloc(ft_strlen(s) + 1);
