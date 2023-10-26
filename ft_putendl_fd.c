@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:38:48 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 16:39:56 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 17:42:06 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
+	if (s && fd)
+		write(fd, s, ft_strlen(s));
+		write(fd, "\n", 1);
 }

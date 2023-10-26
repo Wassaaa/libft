@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:58:45 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/26 15:57:41 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 17:48:25 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*new_str;
 	size_t	i;
 
+	if (!s)
+		return (NULL);
 	if (start >= ft_strlen(s))
 		len = 0;
 	new_str = malloc(len + 1);

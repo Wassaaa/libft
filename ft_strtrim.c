@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:02:05 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 21:04:56 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 17:46:55 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*start_str;
 	size_t	len;
 
+	if (!s1 || !set)
+		return (NULL);
 	len = count_size(s1, set);
 	new_str = malloc(len + 1);
 	if (!new_str)

@@ -39,32 +39,6 @@ void	print_compare_array(char *ft, char *std, int n, char *desc)
 	}
 }
 
-int	test_calloc(size_t count, size_t size, char *desc)
-{
-	char	*ft_val;
-	size_t	i;
-
-	ft_val = (char *)ft_calloc(count, size);
-	printf("%s\n", desc);
-	printArray(ft_val, count * size);
-	i = 0;
-	while (count * size > i)
-	{
-		if (ft_val[i] != 0)
-		{
-			free(ft_val);
-			printf("wasn't initialized to 0s");
-			return (0);
-		}
-		// if this segfaults, then memory area is not writable
-		ft_val[i] = 'A';
-		ft_val[i] = 0;
-		i++;
-	}
-	free(ft_val);
-	return (1);
-}
-
 int	test_atoi(const char *input)
 {
 	int	result;
@@ -328,6 +302,20 @@ int	test_memmove(char *src, int dest_offset, int src_offset, size_t size, char *
 	std_ret = memmove(std_src + dest_offset, std_src + src_offset, size);
 	print_compare_array(ft_ret, std_ret, strlen(src), desc);
 	if (memcmp(ft_ret, std_ret, size) != 0)
+		return (0);
+	return (1);
+}
+
+int	test_calloc(size_t count, size_t size, char *desc)
+{
+	char	*ft_ret;
+	char	*std_ret;
+
+	printf("testing calloc with %zu count and %zu size\n", count, size);
+	ft_ret = ft_calloc(count, size);
+	std_ret = calloc(count, size);
+	print_compare_array(ft_ret, std_ret, count * size, desc);
+	if (memcmp(ft_ret, std_ret, count * size) != 0)
 		return (0);
 	return (1);
 }
@@ -617,6 +605,7 @@ int	main(void)
 	success *= test_calloc(5, sizeof(int), "5 integers");
 	success *= test_calloc(0, 50, "0 times 50byte objects");
 	success *= test_calloc(1, sizeof(char), "1 character");
+	success *= test_calloc(1, 0, "zero size");
 	if (!success)
 	{
 		printf("Test failed for ft_calloc\n");

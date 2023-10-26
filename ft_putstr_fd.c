@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:37:08 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 16:40:00 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 17:40:18 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
+	if (s && fd)
+		write(fd, s, ft_strlen(s));
 }
