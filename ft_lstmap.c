@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 20:34:18 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/26 21:16:37 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/26 21:24:00 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
 	t_list	*new_list;
 	t_list	*add;
 
-	if (!lst)
+	if (!lst || !f || !del)
 		return (NULL);
 	new_list = ft_lstnew(f(lst->content));
 	while (lst)
