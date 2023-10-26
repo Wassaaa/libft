@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 15:24:31 by aklein            #+#    #+#             */
+/*   Updated: 2023/10/25 15:25:55 by aklein           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strchr(const char *src, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	while (*src && *src != c)
-		src++;
-	if (*src == 0 && c != 0)
+	while (*s && *s != c)
+		s++;
+	if (*s == 0 && c != 0)
 		return (NULL);
-	return ((char *)src);
+	return ((char *)s);
 }

@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 15:28:24 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:28:25 by aklein           ###   ########.fr       */
+/*   Created: 2023/10/25 16:29:37 by aklein            #+#    #+#             */
+/*   Updated: 2023/10/26 17:43:27 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t	len;
-
-	len = ft_strlen(s);
-	while (len && s[len] != c)
-		len--;
-	if (len == 0 && c != s[len])
-		return (0);
-	return ((char *)&s[len]);
+	write(fd, &c, 1);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 16:05:25 by aklein            #+#    #+#             */
+/*   Updated: 2023/10/26 17:46:10 by aklein           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	count_words(char const *s, char c)
@@ -51,6 +63,8 @@ char	**ft_split(char const *s, char c)
 	size_t	words;
 	size_t	i;
 
+	if (!s)
+		return (NULL);
 	words = count_words(s, c);
 	str_arr = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!str_arr)

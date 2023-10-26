@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 16:06:58 by aklein            #+#    #+#             */
+/*   Updated: 2023/10/25 16:06:59 by aklein           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	count_digits(int n)
@@ -26,7 +38,7 @@ char	*ft_itoa(int n)
 	if (n < 0)
 		is_negative = 1;
 	digits = count_digits(n) + is_negative;
-	nbr = malloc(digits + 1);
+	nbr = (char *)malloc(digits + 1);
 	if (!nbr)
 		return (NULL);
 	nbr[digits] = '\0';

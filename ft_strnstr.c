@@ -1,16 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/25 15:35:51 by aklein            #+#    #+#             */
+/*   Updated: 2023/10/25 19:42:16 by aklein           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	needle_len;
+	size_t	n_len;
 
-	needle_len = ft_strlen(needle);
 	if (!*needle)
 		return ((char *)haystack);
-	while (len >= needle_len && *haystack)
+	n_len = ft_strlen(needle);
+	while ((len > 0 && *haystack && len >= n_len))
 	{
-		if (*haystack == *needle && ft_strncmp(haystack, needle,
-				ft_strlen(needle)) == 0)
+		if (*haystack == *needle && ft_strncmp(haystack, needle, n_len) == 0)
 			return ((char *)haystack);
 		haystack++;
 		len--;
