@@ -42,6 +42,7 @@ SRCS =	ft_isalpha.c \
 		ft_lstadd_back.c\
 		ft_lstdelone.c\
 		ft_lstclear.c\
+		ft_lstiter.c\
 
 OBJECTS = $(SRCS:.c=.o)
 
