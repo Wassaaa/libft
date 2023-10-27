@@ -10,9 +10,5 @@
 		"editor.defaultFormatter": "keyhr.42-c-format"
 	},
 	"C_Cpp.default.compilerPath": "/usr/bin/clang",
-	"files.associations": {
-		"libft.h": "c",
-		"stdio.h": "c",
-		"stdlib.h": "c"
-	}
+
 }
