@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:51:22 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:51:23 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/27 16:39:45 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	char	*my_calloc;
 
+	if (size && count > SIZE_MAX / size)
+		return (NULL);
 	my_calloc = (char *)malloc(count * size);
 	if (!my_calloc)
 		return (NULL);
