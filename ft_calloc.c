@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:51:22 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/27 17:07:38 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/27 17:13:10 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,4 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	ft_bzero(my_calloc, count * size);
 	return ((void *)my_calloc);
-}
-
-#include <limits.h>
-int main()
-{
-	ft_calloc(INT_MIN, INT_MIN);
 }
