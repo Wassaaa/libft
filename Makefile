@@ -34,8 +34,8 @@ SRCS =	ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
-		\
-		ft_lstnew_bonus.c\
+
+B_SRCS= ft_lstnew_bonus.c\
 		ft_lstadd_front_bonus.c\
 		ft_lstsize_bonus.c\
 		ft_lstlast_bonus.c\
@@ -47,6 +47,8 @@ SRCS =	ft_isalpha.c \
 
 OBJECTS = $(SRCS:.c=.o)
 
+B_OBJ	= $(B_SRCS:.c=.o)
+
 CFLAGS += -Wall -Wextra -Werror
 
 all: $(NAME)
@@ -54,11 +56,14 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 		ar -rcs $@ $^
 
+bonus: $(B_OBJ)
+		ar -rcs $(NAME) $^
+
 $./%.o: $./%.c
 		cc -I . -c $< -o $@
 
 clean:
-		rm -f $(OBJECTS)
+		rm -f $(OBJECTS) $(B_OBJ)
 
 fclean: clean
 		rm -f $(NAME)
