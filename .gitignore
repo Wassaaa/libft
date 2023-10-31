@@ -12,6 +12,5 @@ readme.md
 .DS_Store
 *.gch
 test_lstmap.c
-.gitignore
 .normignore
-.gitignore
+.bonus
