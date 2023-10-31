@@ -6,11 +6,11 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:04:52 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 15:05:12 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/27 19:03:30 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

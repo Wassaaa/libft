@@ -9,3 +9,9 @@ main_b.c
 .vscode/
 libft_tester/
 readme.md
+.DS_Store
+*.gch
+test_lstmap.c
+.gitignore
+.normignore
+.gitignore

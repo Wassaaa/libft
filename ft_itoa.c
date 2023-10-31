@@ -6,11 +6,18 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:06:58 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/25 16:06:59 by aklein           ###   ########.fr       */
+/*   Updated: 2023/10/28 20:28:27 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	abs_val(int n)
+{
+	if (n >= 0)
+		return (n);
+	return (n * -1);
+}
 
 static size_t	count_digits(int n)
 {
@@ -47,7 +54,7 @@ char	*ft_itoa(int n)
 		nbr[i] = '0';
 	while (n != 0)
 	{
-		nbr[i--] = '0' + ABS(n % 10);
+		nbr[i--] = '0' + abs_val(n % 10);
 		n /= 10;
 	}
 	if (is_negative)
