@@ -6,7 +6,7 @@
 #    By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/29 16:17:19 by aklein            #+#    #+#              #
-#    Updated: 2023/10/31 20:49:35 by aklein           ###   ########.fr        #
+#    Updated: 2023/11/01 17:21:51 by aklein           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(NAME): $(OBJECTS)
 		ar -rcs $@ $^
 
 .bonus: $(B_OBJ) $(OBJECTS)
-		ar -rus $(NAME) $^
+		ar -rcs $(NAME) $^
 		@touch .bonus
 
 $./%.o: $./%.c

@@ -1,8 +1,52 @@
 {
     "tasks": [
         {
+            "type": "shell",
+            "label": "runmake",
+            "command": "make",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "Execute Makefile"
+        },
+        {
+            "type": "shell",
+            "label": "main.c libft",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-fdiagnostics-color=always", //cc main.c -Wall -Wextra -Werror -g -I. -L. -lft -lbsd
+                "-g",
+                "main.c",
+                "-Wall",
+                "-Wextra",
+                "-Werror",
+                "-I.",
+                "-L.",
+                "-lft",
+                "-lbsd",
+                "-o",
+                "main.a",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "detail": "main.c with libft"
+        },
+		{
             "type": "cppbuild",
-            "label": "cbuild",
+            "label": "current file to a.out",
             "command": "/usr/bin/gcc",
             "args": [
                 "-fdiagnostics-color=always",
@@ -20,7 +64,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "my task"
+            "detail": "current file with libft"
         }
     ],
     "version": "2.0.0"

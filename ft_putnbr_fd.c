@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:39:46 by aklein            #+#    #+#             */
-/*   Updated: 2023/10/31 21:18:38 by aklein           ###   ########.fr       */
+/*   Updated: 2023/11/01 17:16:59 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd('-', fd);
 		nb *= -1;
 	}
-	if (n > 9)
+	if (nb > 9)
 	{
 		ft_putnbr_fd(nb / 10, fd);
 		ft_putchar_fd(nb % 10 + '0', fd);

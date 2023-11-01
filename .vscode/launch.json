@@ -7,11 +7,29 @@
 		{
 			"type": "lldb",
 			"request": "launch",
-			"name": "lldb",
+			"name": "Launch make",
+			"program": "${workspaceFolder}/libftprintf.a",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "runmake",
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "current file to a.out",
 			"program": "${workspaceFolder}/a.out",
 			"args": [],
-			"cwd": "${fileDirname}",
-			"preLaunchTask": "cbuild",
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "current file to a.out",
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "main.c and libft",
+			"program": "${workspaceFolder}/main.a",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			"preLaunchTask": "main.c libft",
 		}
 
 	]

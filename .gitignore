@@ -13,3 +13,6 @@ readme.md
 test_lstmap.c
 .normignore
 .bonus
+main.a
+.gitignore
+main.c:Zone.Identifier
