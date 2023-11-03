@@ -6,7 +6,7 @@
 /*   By: aklein <aklein@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:39:46 by aklein            #+#    #+#             */
-/*   Updated: 2023/11/01 17:16:59 by aklein           ###   ########.fr       */
+/*   Updated: 2023/11/03 15:49:28 by aklein           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long long int nb;
+	long int	nb;
 
 	nb = n;
 	if (nb < 0)
