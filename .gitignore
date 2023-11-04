@@ -4,7 +4,6 @@ tmp/
 a.out
 *.swp
 libft.a
-main.c
 main_b.c
 libft_tester/
 readme.md
