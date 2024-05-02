@@ -839,6 +839,8 @@ int	main(void)
 	success *= test_atoi("  0001420");
 	success *= test_atoi("-2147483648");
 	success *= test_atoi("2147483647");
+	success *= test_atoi("9223372036854775807");
+	success *= test_atoi("-9223372036854775808");
 	if (!success)
 	{
 		printf("Test failed for ft_atoi\n");
